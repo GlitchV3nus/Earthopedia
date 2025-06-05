@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Earth: The Blue Marble</title>
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/BlueMarble-2001-2002.png/120px-BlueMarble-2001-2002.png" type="image/png" />
+  
+  <style>
+    /* ========== GLOBAL RESET & BASE ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1e2e3e;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    section {
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ========== COLOR VARIABLES ========== */
+    :root {
+      --primary-blue: #1e3a8a;
+      --light-blue: #cfe0fc;
+      --primary-green: #2e7d32;
+      --light-green: #d0f0c0;
+      --primary-brown: #5d4037;
+      --light-brown: #e6d7c8;
+      --white: #fff;
+      --dark-gray: #333;
+      --light-gray: #ececec;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .lead {
+      font-weight: 300;
+      color: #444;
+    }
+
+    /* ========== HEADER & NAV ========== */
+    header {
+      position: relative;
+      background: url('https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/edu_what_is_earth_feature_0.jpg') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+    header .overlay {
+      position: absolute;
+      top: 0; bottom: 0; left: 0; right: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    header h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 2.5rem;
+    }
+    /* Hamburger icon */
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background-color: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    /* Nav menu hidden by default */
+    nav {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 70%;
+      height: 100vh;
+      background-color: var(--primary-blue);
+      padding: 3rem 1.5rem;
+      transition: 0.3s ease-in-out;
+      z-index: 90;
+    }
+    nav.open {
+      right: 0;
+    }
+    nav ul {
+      list-style: none;
+    }
+    nav a {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.2rem;
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    nav a:hover {
+      color: var(--light-blue);
+    }
+
+    /* ========== SECTION STYLES ========== */
+    .section-title {
+      text-align: center;
+      color: var(--primary-blue);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background-color: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 0.75rem 1rem;
+      flex: 1;
+    }
+    .card-content h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: var(--primary-green);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #27692a;
+    }
+
+    /* ========== CONTENT STYLES ========== */
+    /* About Earth */
+    #about-earth .facts {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    #about-earth .facts li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    #about-earth .facts li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-blue);
+    }
+    /* Continents & Countries */
+    .continent-nav {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .continent-nav button {
+      flex: none;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--light-green);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .continent-nav button.active,
+    .continent-nav button:hover {
+      background-color: var(--primary-green);
+      color: var(--white);
+    }
+    .continent-content {
+      display: none;
+    }
+    .continent-content.active {
+      display: block;
+    }
+    /* Population */
+    #population .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .stat-card {
+      background-color: var(--light-blue);
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .stat-card h3 {
+      font-size: 1.5rem;
+      color: var(--primary-blue);
+    }
+    .stat-card p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #444;
+    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid var(--primary-brown);
+    }
+    .timeline-event {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 1rem;
+    }
+    .timeline-event::before {
+      content: "";
+      position: absolute;
+      left: -12px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background-color: var(--primary-brown);
+      border-radius: 50%;
+    }
+    .timeline-event h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: var(--light-gray);
+      font-weight: 500;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background-color: var(--primary-blue);
+      color: var(--white);
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    footer a {
+      color: var(--light-blue);
+      text-decoration: underline;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (min-width: 600px) {
+      header h1 {
+        font-size: 3rem;
+      }
+      nav {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== HAMBURGER & NAV ========== -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav id="nav-menu">
+    <ul>
+      <li><a href="#about-earth">About</a></li>
+      <li><a href="#continents">Continents</a></li>
+      <li><a href="#nature">Nature & Ecosystems</a></li>
+      <li><a href="#population">Population</a></li>
+      <li><a href="#space">Earth in Space</a></li>
+      <li><a href="#companies">World Companies</a></li>
+      <li><a href="#history">History & Lore</a></li>
+      <li><a href="#future">Future</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========== HEADER HERO ========== -->
+  <header>
+    <div class="overlay"></div>
+    <h1>Earth: The Blue Marble</h1>
+  </header>
+
+  <!-- ========== 1. ABOUT EARTH ========== -->
+  <section id="about-earth" class="container">
+    <h2 class="section-title">About Earth</h2>
+    <p class="lead">
+      Earth is the third planet from the Sun and the only known astronomical object to harbor life.  
+      With a rich geology, diverse biospheres, and dynamic weather systems, Earth remains endlessly fascinating.
+    </p>
+    <ul class="facts">
+      <li><strong>Age:</strong> 4.543 billion years (±1%)</li>
+      <li><strong>Diameter:</strong> 12,742 km (mean)</li>
+      <li><strong>Mass:</strong> 5.972 × 10^24 kg</li>
+      <li><strong>Distance from Sun:</strong> ~149.6 million km (1 AU)</li>
+      <li><strong>Orbital Period:</strong> 365.256 days (sidereal year)</li>
+      <li><strong>Rotation Period:</strong> 23.934 hours (sidereal day)</li>
+      <li><strong>Moons:</strong> 1 (The Moon)</li>
+    </ul>
+
+    <h3>Internal Structure</h3>
+    <p>
+      Earth’s internal structure is composed of:
+    </p>
+    <ul class="facts">
+      <li><strong>Crust:</strong> Thin, solid outer shell (~5–70 km thick).</li>
+      <li><strong>Mantle:</strong> Semi-solid silicate rock layer (~2,900 km thick).</li>
+      <li><strong>Outer Core:</strong> Liquid iron-nickel alloy (~2,200 km thick).</li>
+      <li><strong>Inner Core:</strong> Solid iron-nickel center (~1,220 km radius).</li>
+    </ul>
+  </section>
+
+  <!-- ========== 2. CONTINENTS & COUNTRIES ========== -->
+  <section id="continents" class="container">
+    <h2 class="section-title">Continents &amp; Countries</h2>
+    <p class="lead">
+      Earth is divided into seven continents. Each continent comprises multiple countries, cultures, and environments.
+      Below is a navigable overview—tap a continent to see sample countries. You can expand each list as needed.
+    </p>
+    <!-- Continent Tabs -->
+    <div class="continent-nav">
+      <button class="continent-btn active" data-target="africa">Africa</button>
+      <button class="continent-btn" data-target="asia">Asia</button>
+      <button class="continent-btn" data-target="europe">Europe</button>
+      <button class="continent-btn" data-target="north-america">North America</button>
+      <button class="continent-btn" data-target="south-america">South America</button>
+      <button class="continent-btn" data-target="oceania">Oceania</button>
+      <button class="continent-btn" data-target="antarctica">Antarctica</button>
+    </div>
+
+    <!-- Africa -->
+    <div id="africa" class="continent-content active">
+      <div class="card-grid">
+        <!-- Country: Nigeria -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/ng.png" alt="Nigeria Flag" />
+          <div class="card-content">
+            <h3>Nigeria</h3>
+            <p><strong>Capital:</strong> Abuja</p>
+            <p><strong>Population:</strong> 225 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> English</p>
+          </div>
+        </div>
+        <!-- Country: Egypt -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/eg.png" alt="Egypt Flag" />
+          <div class="card-content">
+            <h3>Egypt</h3>
+            <p><strong>Capital:</strong> Cairo</p>
+            <p><strong>Population:</strong> 110 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> Arabic</p>
+          </div>
+        </div>
+        <!-- Country: South Africa -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/za.png" alt="South Africa Flag" />
+          <div class="card-content">
+            <h3>South Africa</h3>
+            <p><strong>Capitals:</strong> Pretoria (executive), Bloemfontein (judicial), Cape Town (legislative)</p>
+            <p><strong>Population:</strong> 60 million (2023 est.)</p>
+            <p><strong>Official Languages:</strong> 11 (incl. Zulu, Xhosa, English)</p>
+          </div>
+        </div>
+        <!-- Add more African countries similarly -->
+      </div>
+    </div>
+    <!-- Asia -->
+    <div id="asia" class="continent-content">
+      <div class="card-grid">
+        <!-- Country: China -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/cn.png" alt="China Flag" />
+          <div class="card-content">
+            <h3>China</h3>
+            <p><strong>Capital:</strong> Beijing</p>
+            <p><strong>Population:</strong> 1.425 billion (2023 est.)</p>
+            <p><strong>Official Language:</strong> Standard Chinese (Mandarin)</p>
+          </div>
+        </div>
+        <!-- Country: India -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/in.png" alt="India Flag" />
+          <div class="card-content">
+            <h3>India</h3>
+            <p><strong>Capital:</strong> New Delhi</p>
+            <p><strong>Population:</strong> 1.417 billion (2023 est.)</p>
+            <p><strong>Official Languages:</strong> Hindi, English (plus 21 other regional languages)</p>
+          </div>
+        </div>
+        <!-- Country: Japan -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/jp.png" alt="Japan Flag" />
+          <div class="card-content">
+            <h3>Japan</h3>
+            <p><strong>Capital:</strong> Tokyo</p>
+            <p><strong>Population:</strong> 124 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> Japanese</p>
+          </div>
+        </div>
+        <!-- Add more Asian countries similarly -->
+      </div>
+    </div>
+    <!-- Europe -->
+    <div id="europe" class="continent-content">
+      <div class="card-grid">
+        <!-- Country: Germany -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/de.png" alt="Germany Flag" />
+          <div class="card-content">
+            <h3>Germany</h3>
+            <p><strong>Capital:</strong> Berlin</p>
+            <p><strong>Population:</strong> 83 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> German</p>
+          </div>
+        </div>
+        <!-- Country: France -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/fr.png" alt="France Flag" />
+          <div class="card-content">
+            <h3>France</h3>
+            <p><strong>Capital:</strong> Paris</p>
+            <p><strong>Population:</strong> 68 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> French</p>
+          </div>
+        </div>
+        <!-- Country: United Kingdom -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/gb.png" alt="UK Flag" />
+          <div class="card-content">
+            <h3>United Kingdom</h3>
+            <p><strong>Capital:</strong> London</p>
+            <p><strong>Population:</strong> 67 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> English</p>
+          </div>
+        </div>
+        <!-- Add more European countries similarly -->
+      </div>
+    </div>
+    <!-- North America -->
+    <div id="north-america" class="continent-content">
+      <div class="card-grid">
+        <!-- Country: United States -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/us.png" alt="USA Flag" />
+          <div class="card-content">
+            <h3>United States</h3>
+            <p><strong>Capital:</strong> Washington, D.C.</p>
+            <p><strong>Population:</strong> 334 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> None at federal level (English de facto)</p>
+          </div>
+        </div>
+        <!-- Country: Canada -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/ca.png" alt="Canada Flag" />
+          <div class="card-content">
+            <h3>Canada</h3>
+            <p><strong>Capital:</strong> Ottawa</p>
+            <p><strong>Population:</strong> 39 million (2023 est.)</p>
+            <p><strong>Official Languages:</strong> English, French</p>
+          </div>
+        </div>
+        <!-- Country: Mexico -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/mx.png" alt="Mexico Flag" />
+          <div class="card-content">
+            <h3>Mexico</h3>
+            <p><strong>Capital:</strong> Mexico City</p>
+            <p><strong>Population:</strong> 130 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> Spanish</p>
+          </div>
+        </div>
+        <!-- Add more North American countries similarly -->
+      </div>
+    </div>
+    <!-- South America -->
+    <div id="south-america" class="continent-content">
+      <div class="card-grid">
+        <!-- Country: Brazil -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/br.png" alt="Brazil Flag" />
+          <div class="card-content">
+            <h3>Brazil</h3>
+            <p><strong>Capital:</strong> Brasília</p>
+            <p><strong>Population:</strong> 216 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> Portuguese</p>
+          </div>
+        </div>
+        <!-- Country: Argentina -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/ar.png" alt="Argentina Flag" />
+          <div class="card-content">
+            <h3>Argentina</h3>
+            <p><strong>Capital:</strong> Buenos Aires</p>
+            <p><strong>Population:</strong> 46 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> Spanish</p>
+          </div>
+        </div>
+        <!-- Country: Colombia -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/co.png" alt="Colombia Flag" />
+          <div class="card-content">
+            <h3>Colombia</h3>
+            <p><strong>Capital:</strong> Bogotá</p>
+            <p><strong>Population:</strong> 52 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> Spanish</p>
+          </div>
+        </div>
+        <!-- Add more South American countries similarly -->
+      </div>
+    </div>
+    <!-- Oceania -->
+    <div id="oceania" class="continent-content">
+      <div class="card-grid">
+        <!-- Country: Australia -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/au.png" alt="Australia Flag" />
+          <div class="card-content">
+            <h3>Australia</h3>
+            <p><strong>Capital:</strong> Canberra</p>
+            <p><strong>Population:</strong> 26 million (2023 est.)</p>
+            <p><strong>Official Language:</strong> None at federal level (English de facto)</p>
+          </div>
+        </div>
+        <!-- Country: New Zealand -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/nz.png" alt="New Zealand Flag" />
+          <div class="card-content">
+            <h3>New Zealand</h3>
+            <p><strong>Capital:</strong> Wellington</p>
+            <p><strong>Population:</strong> 5.2 million (2023 est.)</p>
+            <p><strong>Official Languages:</strong> English, Māori, NZ Sign Language</p>
+          </div>
+        </div>
+        <!-- Country: Fiji -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/fj.png" alt="Fiji Flag" />
+          <div class="card-content">
+            <h3>Fiji</h3>
+            <p><strong>Capital:</strong> Suva</p>
+            <p><strong>Population:</strong> 900,000 (2023 est.)</p>
+            <p><strong>Official Languages:</strong> English, Fijian, Fiji Hindi</p>
+          </div>
+        </div>
+        <!-- Add more Oceanian countries similarly -->
+      </div>
+    </div>
+    <!-- Antarctica -->
+    <div id="antarctica" class="continent-content">
+      <div class="card-grid">
+        <!-- Region: Antarctica (No sovereign countries, but use flags of research stations or treaty) -->
+        <div class="card">
+          <img src="https://flagcdn.com/w320/aq.png" alt="Antarctica Map" />
+          <div class="card-content">
+            <h3>Antarctica</h3>
+            <p><strong>Status:</strong> Governed by Antarctic Treaty System</p>
+            <p><strong>Population:</strong> ~1,000–5,000 (seasonal researchers)</p>
+            <p><strong>Main Activities:</strong> Research stations (US, Russia, China, etc.)</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-style: italic;">
+        *No native human population—only scientists and personnel from various countries.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== 3. NATURE & ECOSYSTEMS ========== -->
+  <section id="nature" class="container">
+    <h2 class="section-title">Nature &amp; Ecosystems</h2>
+    <p class="lead">
+      Earth’s biosphere includes a rich tapestry of biomes, from tropical rainforests to polar deserts. Below are primary biomes and examples of iconic natural wonders.
+    </p>
+
+    <!-- Biome Cards -->
+    <div class="card-grid">
+      <!-- Tropical Rainforest -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1568534586485-128b8508f176?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Amazon Rainforest" />
+        <div class="card-content">
+          <h3>Tropical Rainforest</h3>
+          <p>
+            Found near the Equator (e.g., Amazon Basin, Congo Basin).  
+            <strong>Features:</strong> High rainfall (>2,000 mm/yr), year-round warm temperatures, extremely high biodiversity.
+          </p>
+        </div>
+      </div>
+      <!-- Desert -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1584553855454-3ade45beed5a?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Sahara Desert" />
+        <div class="card-content">
+          <h3>Desert</h3>
+          <p>
+            <strong>Examples:</strong> Sahara, Arabian, Gobi.  
+            <strong>Features:</strong> Very low precipitation (<250 mm/yr), extreme temperature swings.
+          </p>
+        </div>
+      </div>
+      <!-- Tundra -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1543537310-f4d7fdbecf7f?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Arctic Tundra" />
+        <div class="card-content">
+          <h3>Tundra</h3>
+          <p>
+            <strong>Arctic & Alpine Tundra</strong>.  
+            <strong>Features:</strong> Low temperatures, short growing season, permafrost, low vegetation (mosses, lichens).
+          </p>
+        </div>
+      </div>
+      <!-- Grassland -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1591232896674-ad1a0ea7a32c?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Serengeti Grassland" />
+        <div class="card-content">
+          <h3>Grassland</h3>
+          <p>
+            <strong>Examples:</strong> North American prairies, African savanna (Serengeti).  
+            <strong>Features:</strong> Dominated by grasses, moderate rainfall (500–900 mm/yr), rich soils.
+          </p>
+        </div>
+      </div>
+      <!-- Temperate Forest -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1501769214405-1024c02b5083?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="European Temperate Forest" />
+        <div class="card-content">
+          <h3>Temperate Forest</h3>
+          <p>
+            <strong>Examples:</strong> Eastern US, Europe, Eastern Asia.  
+            <strong>Features:</strong> Four seasons, deciduous trees, moderate rainfall (750–1,500 mm/yr).
+          </p>
+        </div>
+      </div>
+      <!-- Marine (Ocean) -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Pacific Ocean" />
+        <div class="card-content">
+          <h3>Marine (Oceans)</h3>
+          <p>
+            Cover ~71% of Earth’s surface.  
+            <strong>Zones:</strong> Intertidal, Neritic, Pelagic, Abyssal, Hadal.  
+            <strong>Features:</strong> Highly productive coastal zones, deep ocean trenches, coral reefs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Iconic Natural Wonders -->
+    <h3 style="margin-top: 2rem;">Iconic Natural Wonders</h3>
+    <ul class="facts">
+      <li><strong>Grand Canyon (USA):</strong> 446 km long, up to 29 km wide, depth >1.8 km.</li>
+      <li><strong>Great Barrier Reef (Australia):</strong> Largest coral reef system (~2,300 km long).</li>
+      <li><strong>Mount Everest (Nepal/China):</strong> Highest peak at 8,848.86 m above sea level.</li>
+      <li><strong>Amazon Rainforest (South America):</strong> ~5.5 million km², 10% of known species.</li>
+      <li><strong>Victoria Falls (Zambia/Zimbabwe):</strong> 1,708 m width, 108 m height.</li>
+    </ul>
+  </section>
+
+  <!-- ========== 4. POPULATION ========== -->
+  <section id="population" class="container">
+    <h2 class="section-title">Population</h2>
+    <p class="lead">
+      Earth’s human population has grown from about 1 billion in 1800 to over 8 billion today. Below are some key stats.
+    </p>
+    <div class="stats">
+      <div class="stat-card">
+        <h3>7.99 Billion</h3>
+        <p>Global Population (as of 2023)</p>
+      </div>
+      <div class="stat-card">
+        <h3>368 people/km²</h3>
+        <p>Average Population Density (on land)</p>
+      </div>
+      <div class="stat-card">
+        <h3>Tokyo, Japan</h3>
+        <p>World’s Largest Urban Area (~37.4 million)</p>
+      </div>
+      <div class="stat-card">
+        <h3>Mandarin Chinese</h3>
+        <p>Most Spoken First Language (~920 million native speakers)</p>
+      </div>
+    </div>
+
+    <!-- Population by Region Table -->
+    <h3 style="margin-top: 2rem;">Population by Continent (2023 estimates)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Continent</th>
+          <th>Population</th>
+          <th>% of World</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Asia</td>
+          <td>4.77 Billion</td>
+          <td>59.6%</td>
+        </tr>
+        <tr>
+          <td>Africa</td>
+          <td>1.45 Billion</td>
+          <td>18.1%</td>
+        </tr>
+        <tr>
+          <td>Europe</td>
+          <td>748 Million</td>
+          <td>9.3%</td>
+        </tr>
+        <tr>
+          <td>North America</td>
+          <td>600 Million</td>
+          <td>7.5%</td>
+        </tr>
+        <tr>
+          <td>South America</td>
+          <td>434 Million</td>
+          <td>5.4%</td>
+        </tr>
+        <tr>
+          <td>Oceania</td>
+          <td>43 Million</td>
+          <td>0.5%</td>
+        </tr>
+        <tr>
+          <td>Antarctica</td>
+          <td>~4 Thousand (seasonal)</td>
+          <td>~0%</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== 5. EARTH IN SPACE ========== -->
+  <section id="space" class="container">
+    <h2 class="section-title">Earth in Space</h2>
+    <p class="lead">
+      Earth is one of eight planets orbiting the Sun in the Solar System. Below is a comparison with its neighboring planets.
+    </p>
+
+    <!-- Comparison Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Planet</th>
+          <th>Diameter (km)</th>
+          <th>Orbital Distance from Sun (AU)</th>
+          <th>Orbital Period (days)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mercury</td>
+          <td>4,879</td>
+          <td>0.39</td>
+          <td>88</td>
+        </tr>
+        <tr>
+          <td>Venus</td>
+          <td>12,104</td>
+          <td>0.72</td>
+          <td>225</td>
+        </tr>
+        <tr>
+          <td><strong>Earth</strong></td>
+          <td><strong>12,742</strong></td>
+          <td><strong>1.00</strong></td>
+          <td><strong>365.25</strong></td>
+        </tr>
+        <tr>
+          <td>Mars</td>
+          <td>6,779</td>
+          <td>1.52</td>
+          <td>687</td>
+        </tr>
+        <tr>
+          <td>Jupiter</td>
+          <td>139,820</td>
+          <td>5.20</td>
+          <td>4,333</td>
+        </tr>
+        <tr>
+          <td>Saturn</td>
+          <td>116,460</td>
+          <td>9.58</td>
+          <td>10,759</td>
+        </tr>
+        <tr>
+          <td>Uranus</td>
+          <td>50,724</td>
+          <td>19.20</td>
+          <td>30,687</td>
+        </tr>
+        <tr>
+          <td>Neptune</td>
+          <td>49,244</td>
+          <td>30.05</td>
+          <td>60,190</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- The Moon & Satellites -->
+    <h3 style="margin-top: 2rem;">The Moon</h3>
+    <ul class="facts">
+      <li><strong>Diameter:</strong> 3,474 km</li>
+      <li><strong>Distance from Earth:</strong> ~384,400 km (average)</li>
+      <li><strong>Orbital Period:</strong> 27.3 days around Earth</li>
+      <li><strong>Phases:</strong> New, Waxing Crescent, First Quarter, Waxing Gibbous, Full, Waning Gibbous, Last Quarter, Waning Crescent</li>
+    </ul>
+    <h3 style="margin-top: 1rem;">Satellites & ISS</h3>
+    <ul class="facts">
+      <li><strong>International Space Station (ISS):</strong> Orbits at ~408 km altitude; completion in 2011.</li>
+      <li><strong>Earth Observation Satellites:</strong> Landsat series, Sentinel series, GOES, etc.</li>
+    </ul>
+  </section>
+
+  <!-- ========== 6. WORLD COMPANIES ========== -->
+  <section id="companies" class="container">
+    <h2 class="section-title">World Companies</h2>
+    <p class="lead">
+      These are some of the largest companies by market capitalization and global reach, organized by sector. Their operations significantly affect Earth’s economy and environment.
+    </p>
+    <div class="card-grid">
+      <!-- Company: Apple -->
+      <div class="card">
+        <img src="https://logo.clearbit.com/apple.com" alt="Apple Logo" />
+        <div class="card-content">
+          <h3>Apple Inc.</h3>
+          <p><strong>Headquarters:</strong> Cupertino, California, USA</p>
+          <p><strong>Sector:</strong> Technology (Consumer Electronics)</p>
+          <p><strong>Market Cap:</strong> ~$2.7 Trillion (2023)</p>
+        </div>
+      </div>
+      <!-- Company: Saudi Aramco -->
+      <div class="card">
+        <img src="https://logo.clearbit.com/aramco.com" alt="Saudi Aramco Logo" />
+        <div class="card-content">
+          <h3>Saudi Aramco</h3>
+          <p><strong>Headquarters:</strong> Dhahran, Saudi Arabia</p>
+          <p><strong>Sector:</strong> Oil &amp; Gas</p>
+          <p><strong>Market Cap:</strong> ~$2.0 Trillion (2023)</p>
+        </div>
+      </div>
+      <!-- Company: Microsoft -->
+      <div class="card">
+        <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Logo" />
+        <div class="card-content">
+          <h3>Microsoft Corp.</h3>
+          <p><strong>Headquarters:</strong> Redmond, Washington, USA</p>
+          <p><strong>Sector:</strong> Technology (Software &amp; Cloud)</p>
+          <p><strong>Market Cap:</strong> ~$2.4 Trillion (2023)</p>
+        </div>
+      </div>
+      <!-- Company: Amazon -->
+      <div class="card">
+        <img src="https://logo.clearbit.com/amazon.com" alt="Amazon Logo" />
+        <div class="card-content">
+          <h3>Amazon.com, Inc.</h3>
+          <p><strong>Headquarters:</strong> Seattle, Washington, USA</p>
+          <p><strong>Sector:</strong> E-commerce & Technology</p>
+          <p><strong>Market Cap:</strong> ~$1.3 Trillion (2023)</p>
+        </div>
+      </div>
+      <!-- Company: Tesla -->
+      <div class="card">
+        <img src="https://logo.clearbit.com/tesla.com" alt="Tesla Logo" />
+        <div class="card-content">
+          <h3>Tesla, Inc.</h3>
+          <p><strong>Headquarters:</strong> Palo Alto, California, USA</p>
+          <p><strong>Sector:</strong> Automotive & Renewable Energy</p>
+          <p><strong>Market Cap:</strong> ~$800 Billion (2023)</p>
+        </div>
+      </div>
+      <!-- Add more global companies as needed -->
+    </div>
+  </section>
+
+  <!-- ========== 7. HISTORY & LORE ========== -->
+  <section id="history" class="container">
+    <h2 class="section-title">History &amp; Lore</h2>
+    <p class="lead">
+      From its fiery formation to modern human civilization, Earth’s history spans billions of years. Below is a concise timeline highlighting key events.
+    </p>
+    <div class="timeline">
+      <!-- Formation -->
+      <div class="timeline-event">
+        <h4>4.543 Billion Years Ago</h4>
+        <p>Earth forms from the solar nebula; heavy bombardment phase.</p>
+      </div>
+      <!-- First Life -->
+      <div class="timeline-event">
+        <h4>~3.8 Billion Years Ago</h4>
+        <p>Earliest evidence of life (stromatolites, prokaryotes) in hydrothermal vents.</p>
+      </div>
+      <!-- Oxygenation -->
+      <div class="timeline-event">
+        <h4>~2.4 Billion Years Ago</h4>
+        <p>Great Oxidation Event: atmospheric oxygen rises dramatically due to cyanobacteria photosynthesis.</p>
+      </div>
+      <!-- Cambrian Explosion -->
+      <div class="timeline-event">
+        <h4>~541 Million Years Ago</h4>
+        <p>Cambrian Explosion: rapid diversification of multicellular life in oceans.</p>
+      </div>
+      <!-- Dinosaurs Era -->
+      <div class="timeline-event">
+        <h4>252 Million to 66 Million Years Ago</h4>
+        <p>Mesozoic Era: Age of Dinosaurs (Triassic, Jurassic, Cretaceous).</p>
+      </div>
+      <!-- K–Pg Extinction -->
+      <div class="timeline-event">
+        <h4>66 Million Years Ago</h4>
+        <p>Cretaceous–Paleogene extinction event; non-avian dinosaurs go extinct.</p>
+      </div>
+      <!-- First Hominids -->
+      <div class="timeline-event">
+        <h4>~7 Million Years Ago</h4>
+        <p>First hominids (Sahelanthropus) appear in Africa.</p>
+      </div>
+      <!-- Modern Humans -->
+      <div class="timeline-event">
+        <h4>~300,000 Years Ago</h4>
+        <p><em>Homo sapiens</em> emerge in Africa.</p>
+      </div>
+      <!-- Agricultural Revolution -->
+      <div class="timeline-event">
+        <h4>~12,000 Years Ago</h4>
+        <p>Neolithic Agricultural Revolution: humans domesticate plants and animals.</p>
+      </div>
+      <!-- Industrial Revolution -->
+      <div class="timeline-event">
+        <h4>18th – 19th Century CE</h4>
+        <p>Steam engine, mass production, urbanization, fossil fuel reliance.</p>
+      </div>
+      <!-- Modern Era -->
+      <div class="timeline-event">
+        <h4>20th – 21st Century CE</h4>
+        <p>Technological revolution, globalization, digital age, climate change awareness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 8. FUTURE OF EARTH ========== -->
+  <section id="future" class="container">
+    <h2 class="section-title">Future of Earth</h2>
+    <p class="lead">
+      Scientists predict that in the next few decades, Earth will face significant challenges and transformations. Below are some key topics shaping our future.
+    </p>
+
+    <h3>Climate Change</h3>
+    <p>
+      - <strong>Global Warming:</strong> Average surface temperature has risen by ~1.1 °C since preindustrial times.  
+      - <strong>Sea Level Rise:</strong> ~20 cm rise since 1900; projected additional 0.5–1.0 m by 2100 if emissions remain high.  
+      - <strong>Extreme Weather:</strong> Increased frequency/intensity of hurricanes, heatwaves, floods, and droughts.
+    </p>
+
+    <h3>Space Colonization</h3>
+    <p>
+      - <strong>Moon Bases:</strong> Plans by NASA Artemis program to return humans to the Moon by 2025–2026.  
+      - <strong>Mars Missions:</strong> NASA’s Perseverance rover (landed 2021) and planned crewed missions in late 2030s.  
+      - <strong>Space Tourism:</strong> Companies like SpaceX, Blue Origin, and Virgin Galactic developing private astronaut flights.
+    </p>
+
+    <h3>Renewable Energy & Sustainability</h3>
+    <p>
+      - <strong>Solar & Wind Power:</strong> Rapid growth—solar capacity grew ~20% per year (2010–2020).  
+      - <strong>Electric Vehicles:</strong> ~20 million EVs on roads globally (2023), projected 145 million by 2030.  
+      - <strong>Circular Economy:</strong> Emphasis on recycling, waste reduction, and closed-loop manufacturing.
+    </p>
+
+    <h3>Technological Advances</h3>
+    <p>
+      - <strong>Artificial Intelligence:</strong> Transforming industries—healthcare, finance, transportation, etc.  
+      - <strong>Biotechnology:</strong> Gene editing (CRISPR), synthetic biology for sustainable materials.  
+      - <strong>Quantum Computing:</strong> Early prototypes showing potential for solving complex problems faster.
+    </p>
+  </section>
+
+  <!-- ========== 9. CONTACT / CREDITS ========== -->
+  <section id="contact" class="container">
+    <h2 class="section-title">Contact &amp; Credits</h2>
+    <p>
+      This site was designed and coded by the <strong>Earth Enthusiast Team</strong>. All data and images are sourced from publicly available resources.  
+      Feel free to reach out for corrections or contributions.
+    </p>
+    <ul class="facts">
+      <li><strong>Lead Developer:</strong> Jane Doe (<a href="mailto:jane.doe@example.com">jane.doe@example.com</a>)</li>
+      <li><strong>Content Editor:</strong> John Smith (<a href="mailto:john.smith@example.com">john.smith@example.com</a>)</li>
+      <li><strong>Design &amp; UX:</strong> Maria Garcia (<a href="mailto:maria.garcia@example.com">maria.garcia@example.com</a>)</li>
+    </ul>
+    <p style="margin-top: 1rem;">
+      <strong>Sources:</strong>
+      <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
+        <li>NASA (https://nasa.gov)</li>
+        <li>United Nations Population Division (https://population.un.org)</li>
+        <li>World Bank (https://worldbank.org)</li>
+        <li>Flag CDN (https://flagcdn.com)</li>
+        <li>Unsplash (for images)</li>
+        <li>Wikipedia (for general data)</li>
+      </ul>
+    </p>
+    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #555;">
+      &copy; 2025 Earth Enthusiast Team. All rights reserved.
+    </p>
+    <p><a href="https://github.com/earth-enthusiast" target="_blank">GitHub Repository</a> | <a href="https://netlify.com" target="_blank">Hosted via Netlify</a></p>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>Explore more: <a href="#about-earth">About</a> | <a href="#nature">Nature</a> | <a href="#future">Future</a></p>
+    <p>Made with ♥ in 2025</p>
+  </footer>
+
+  <!-- ========== JAVASCRIPT FOR INTERACTIVITY ========== -->
+  <script>
+    // Toggle Hamburger & Nav
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      // Animate hamburger into X
+      hamburger.classList.toggle('is-active');
+    });
+
+    // Continent Tabs Logic
+    const continentButtons = document.querySelectorAll('.continent-btn');
+    const continentContents = document.querySelectorAll('.continent-content');
+
+    continentButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active from all buttons
+        continentButtons.forEach(b => b.classList.remove('active'));
+        // Hide all contents
+        continentContents.forEach(c => c.classList.remove('active'));
+        // Activate clicked
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    // Close nav menu when link clicked (for mobile)
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        hamburger.classList.remove('is-active');
+      });
+    });
+  </script>
+</body>
+</html>
